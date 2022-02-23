@@ -1,0 +1,4 @@
+*.json
+scss/
+main.scss
+node_modules/
