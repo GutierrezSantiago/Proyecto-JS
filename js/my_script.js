@@ -4,7 +4,7 @@ let oneRepMax = (weight, reps) => weight*(36/(37-reps))
 //Para peso(kg) y altura(m)
 let imc = (weight, height) => weight/(height*height)
 
-class Deportista {
+class Athlete {
     constructor(name, sports, weight, height, repMaxs) {
         this.name = name
         this.sports = sports
@@ -41,6 +41,9 @@ class Deportista {
     } else {
         alert(this.name, " no practiba ", sport, ".")}
     }
+    getSportsNum(){
+        return this.sports.length()
+    }
 
 }
 
@@ -51,6 +54,55 @@ function sportSuggest(){
         exit = prompt("¿Esta satisfecho con la sugerencia? (Ingrese 1 para si, 0 para no.")
     }
 }
+
+let loadSports = (array) => {
+    let opt1 = 1
+            while(opt1 == 1) {
+                opt1 = prompt("Desea cargar un deporte? (1 para si, 0 para no).")
+                if (opt1 == 1) {
+                    array.push(
+                        prompt("Ingrese un deporte: ")
+                        ) 
+                }
+}}
+
+let loadOneRepMaxs = (array) => {
+    let opt2 = 1
+    let oneRepM
+    let compounds = ["press de banca", "sentadilla", "peso muerto"]
+    opt2 = prompt("Sabes tus máximos con una repetición? (1 para si, 0 para no).")
+    for (let i = 0; i < 3; i++) {
+        if (opt2 == 1) {
+            oneRepM = prompt("Ingrese el máximo con " + compounds[i] + " :")
+                 
+        } else {
+            let reps = prompt("Cuantas repeticiones hace en " + compounds[i] + " ?")
+            let weight = prompt("Cuanto peso hace en esas " + reps + " repeticiones de" + compounds[i] + " ?")
+            let repsParsed = parseInt(reps)
+            let weightParsed = parseFloat(weight)
+            oneRepM = oneRepMax(weightParsed, repsParsed)
+            
+        }
+        array.push(oneRepMax)
+    }
+}
+
+let loadAthletes = (array) => {
+        while(true) {
+            let name = prompt("Ingrese el nombre del deportista: ")
+            let sports = []
+            loadSports(sports)
+            let weight = prompt("Ingrese el peso del deportista: ")
+            let height = prompt("Ingrese la altura del deportista: ")
+            let repMaxs = []
+            loadOneRepMaxs([])
+            array.push(new Athlete(name, sports, weight, height, repMaxs))
+            let opt3 = prompt("Desea cargar otro deportista? (1 para si, 0 para no)")
+            if (opt3 == 0) {
+                break
+            }
+        }       
+    }
 
 //test menor
 let test = 0
@@ -82,3 +134,8 @@ while(test == 0){
     
     }
         while (opcion != 3)
+
+        
+let array = []
+loadAthletes(array)
+console.log(array)
