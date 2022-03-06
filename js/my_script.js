@@ -104,6 +104,17 @@ let loadAthletes = (array) => {
         }       
     }
 
+let GreaterThanXBW = (mult) => ((athlete) => (athlete.repMaxs).some((el) => el > mult*athlete.weight))
+
+// SI PESO ES UN OBJETO? PODRIA TENER UNA BANDERA PARA SI ESTA EN KG O LB Y METODOS RESPECTIVOS PARA TRANSFORMAR DE UNO A OTRO.
+
+// test Funcion orden superior y metodos array
+let GreaterThan1BW = GreaterThanXBW(1)
+let testAthlete1 = new Athlete("Roman", ["Futbol", "Skate", "Tenis"], 85, 1.90, [80, 80, 80])
+let testAthlete2 = new Athlete("Roman", ["Futbol", "Skate", "Tenis"], 85, 1.90, [100, 80, 80])
+console.log(GreaterThan1BW(testAthlete1))
+console.log(GreaterThan1BW(testAthlete2))
+
 //test menor
 let test = 0
 while(test == 0){
