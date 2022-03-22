@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.nav {
+  min-height: 10vh; }
+
+.main {
+  margin-top: 10vh; }
+  .main__section {
+    height: 90vh; }
+    .main__section--last {
+      height: 80vh; }
+  .main__formDiv {
+    height: auto;
+    width: 90%;
+    border-radius: 1.5%;
+    box-shadow: 1px -9px 400px 29px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 1px -9px 400px 29px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 1px -9px 400px 29px rgba(0, 0, 0, 0.23);
+    padding: 3rem 3rem; }
+  .main__loginChange {
+    text-decoration: underline;
+    color: blue; }

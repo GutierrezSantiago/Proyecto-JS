@@ -116,7 +116,7 @@ console.log(GreaterThan1BW(testAthlete1))
 console.log(GreaterThan1BW(testAthlete2))
 
 //test menor
-let test = 0
+/*let test = 0
 while(test == 0){
     sportSuggest()
     test = prompt("Desea salir del prompt de sugerencias? (1 para si, 0 para no)")}
@@ -149,4 +149,4 @@ while(test == 0){
         
 let array = []
 loadAthletes(array)
-console.log(array)
+console.log(array)*/
