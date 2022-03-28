@@ -83,11 +83,38 @@ function calculate_bmi(){
     }
     let bmi_result = bmi(weight, height)
     bmi_result = bmi_result.toFixed(2)
-    let dateObj = new Date()
+
+    //CHALLENGE CODE -> LATER IMPROVE ON FUNCTIONALITY
+
+    Swal.fire({
+        title:  `Your IMC is ${bmi_result}.`,
+        text: 'Would you like to record this entry in yout IMC logbook?',
+        icon: 'info',
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        showDenyButton: 'true',
+        allowOutsideClick: 'false',
+        allowEnterKey: 'false'
+      }).then((result) => {
+          if (result.isConfirmed) {
+            // READ BELOW -> OBSOLETE CODE THAT WILL BE UPDATED CLOSER TO THE FINAL PROYECT DEADLINE
+            let dateObj = new Date() // FINAL PROYECT => DAYJS LIBRARY
+            let date = `${dateObj.getDate()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`
+            let detailed_bmi = new bmi_detailed(weight, height, bmi_result, date)
+            let container = document.getElementById('displayBmi')
+            push_bmi(detailed_bmi)
+          } else {
+
+          }
+      })
+
+     //BELOW THIS IS ANOTHER FUNCTION :: REMEMBER MODULARITY -> FUNCTION RESPONSABILITY ABOVE => GIVE IMC
+    /* SEPARATE FUNCTION AND CORRECT ERRORS
+    
+    let dateObj = new Date() // FINAL PROYECT => DAYJS LIBRARY
     let date = `${dateObj.getDate()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`
     console.log(date)
     let detailed_bmi = new bmi_detailed(weight, height, bmi_result, date)
-    bmis.push(detailed_bmi)
     let container = document.getElementById('displayBmi')
     container.innerHTML = `<div class="main__formDiv container bg-secondary">
     <h2 class="mb-3 text-center">BMI Result</h2>
@@ -101,7 +128,7 @@ function calculate_bmi(){
     let noLogbook = document.getElementById('noLogbook')
     noLogbook.addEventListener('click', () => container.innerHTML = '')
     let logbook = document.getElementById('logbook')
-    logbook.addEventListener('click', push_bmi(detailed_bmi))
+    logbook.addEventListener('click', push_bmi(detailed_bmi))*/
     
 }
 
