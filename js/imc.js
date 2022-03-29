@@ -98,6 +98,10 @@ function calculate_bmi(){
       }).then((result) => {
           if (result.isConfirmed) {
             // READ BELOW -> OBSOLETE CODE THAT WILL BE UPDATED CLOSER TO THE FINAL PROYECT DEADLINE
+            
+            // LATER -> DIFFERENT PAGE FOR LOGBOOKS, THEY CAN BECOME TOO LARGE FOR MAIN PAGE
+            //          SPREADSHEET STYLE UI WITH FILTERS
+
             let dateObj = new Date() // FINAL PROYECT => DAYJS LIBRARY
             let date = `${dateObj.getDate()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`
             let detailed_bmi = new bmi_detailed(weight, height, bmi_result, date)
