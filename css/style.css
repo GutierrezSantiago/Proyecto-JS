@@ -12,6 +12,10 @@
     height: 90vh; }
     .main__section--last {
       height: 80vh; }
+    .main__section--logbook {
+      height: 78vh;
+      overflow-y: auto;
+    }
   .main__formDiv {
     height: auto;
     width: 90%;

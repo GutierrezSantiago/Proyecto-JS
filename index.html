@@ -22,10 +22,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">IMC</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">One Rep Maxs</a>
+                    <a class="nav-link" href="./pages/logbook.html">Logbook</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link disabled" href="#">Contact</a>
@@ -56,7 +53,7 @@
                               <label class="form-check-label" for="keepLogin">Keep me logged in</label>
                             </div>
                             <p class="main__loginChange" id="loginChange">Don't have a user? Sign up here</p>
-                            <button type="submit" class="btn btn-primary justify-self-center w-80">Log in</button>
+                            <button type="submit" class="btn btn-primary justify-self-center w-80" id="user_button">Log in</button>
                           </form>
                     </div>
                 </div>
@@ -65,7 +62,7 @@
         <!--SECCION IMC, SALUD?-->
         <section class="main__section container-fluid">
             <div class="row h-100">
-                <div class="col-12 col-md-6 h-50 h-md-100 border">
+                <div class="col-12 col-md-6 h-50 h-md-100 border my-auto">
                   <div class="main__formDiv container bg-secondary">
                     <h2 class="mb-3 text-center">BMI Calculator</h2>
                     <form class="d-flex flex-column">
@@ -88,7 +85,7 @@
                       </select>
                     </div>
                     <button type="button" class="btn btn-primary mb-2" id="bmi_calculate">Calculate</button>
-                    <button type="button" class="btn btn-primary" id="bmi_displays">Display previous results</button>
+                    <button type="button" class="btn btn-primary" id="bmi_toLogbook">Go to my logbook</button>
                   </form>
                   </div>
                 </div>
@@ -98,19 +95,65 @@
             </div>
         </section>
         <!--SECCION REPMAX COMPOUNDS-->
-        <section class="main__section main__section--last container-fluid">
+        <section class="main__section main__section--last container-fluid m-4">
             <div class="row h-100">
-                <div class="col-12 col-md-4 border">1</div>
-                <div class="col-12 col-md-4 border">2</div>
-                <div class="col-12 col-md-4 border">3</div>
+                <div class="col-12 col-md-6 border">
+                  
+                </div>
+                <div class="col-12 col-md-6 border my-auto">
+                  <div class="main__formDiv container bg-secondary">
+                    <select id="lift" class="form-select form-select-lg mb-3 text-uppercase fw-bolder text-center" aria-label=".form-select-lg example">
+                      <option selected value="0">Deadlift</option>
+                      <option value="1">Squat</option>
+                      <option value="2">Bench Press</option>
+                      <option value="3">Other</option>
+                    </select>
+                    <form class="d-flex flex-column">
+                    <div class="form-floating mb-3 d-flex">
+                      <input type="number" class="form-control" id="weight_lift" placeholder="Weight">
+                      <label for="weight_lift">Weight</label>
+                      <select class="form-select ms-2 text-center d-flex w-auto" id="w_lift_unit">
+                        <option selected>Unit</option>
+                        <option value="1">Lbs</option>
+                        <option value="2">Kgs</option>
+                      </select>
+                    </div>
+                    <div class="form-floating mb-3 d-flex">
+                      <input type="number" class="form-control" id="reps_lift" placeholder="Height">
+                      <label for="height">Repetitions</label>
+                    </div>
+                    <button type="button" class="btn btn-primary mb-2" id="oneRepMax_calculate">Calculate</button>
+                    <button type="button" class="btn btn-primary" id="oneRepMax_toLogbook">Go to my logbook</button>
+                  </form>
+                  </div>
+                </div>
             </div>
+          </div>
         </section>
     </main>
-    <footer>Links de contacto</footer>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-1 border-top bg-light mb-0">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+          <svg class="m-2" width="50px" height="50px" viewBox="0 0 15 15" id="fitness-centre" xmlns="http://www.w3.org/2000/svg">
+            <path id="daec40ff-71f5-4432-9d75-dcba7b9c1b89" d="M14.5,7V8h-1v2h-1v1H11V8H4v3H2.5V10h-1V8H.5V7h1V5h1V4H4V7h7V4h1.5V5h1V7Z"/>
+          </svg>
+        </a>
+        <span class="text-muted">© 2021 Company, Inc</span>
+      </div>
+  
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+      </ul>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/my_script.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="./js/units_values.js"></script>
     <script src="./js/user.js"></script>
     <script src="./js/imc.js"></script>
+    <script src="./js/oneRepMaxs.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

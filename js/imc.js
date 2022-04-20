@@ -6,19 +6,7 @@ if (storedBmis) {
 }
 
 
-let bmi = (weight, height) => weight/(height*height)
-
-let poundToKg = (weightInPounds) => {return weightInPounds*0,453592}
-
-let toMetre = (height, unit) => {
-    let inMetre = 0
-    if (unit == 1){
-        inMetre = height/100
-    } else {
-        inMetre = height*0,3048
-    }
-    return inMetre
-}
+let bmi = (weight, height) => weight.value/(height.value*height.value)
 
 class bmi_detailed {
     constructor(weight, height, bmi, date) {
@@ -29,20 +17,28 @@ class bmi_detailed {
     }
 }
 
+// LATER UPDATED FOR CHANGIN BETWEEN UNITS OF MEASUREMENT
 let render_bmi = () => {
-    const spreadsheet = document.getElementById('displayBmi')
-    spreadsheet.innerHTML = ''
-    let ul = document.createElement('ul')
-    let titles = document.createElement('li')
-    titles.innerText = 'Weight(Kg) - Height(m) - BMI - Date'
-    ul.appendChild(titles)
+    const spreadsheet = document.getElementById('spreadsheet')
+    spreadsheet.innerHTML = '<div class="container">'
+    let titles = document.createElement('div')
+    titles.className = 'row border'
+    titles.innerHTML = `<div class="col-3">Weight(Kg)</div>
+                        <div class="col-3">Height(M)</div>
+                        <div class="col-3">BMI</div>
+                        <div class="col-3">Date</div>`
+    spreadsheet.appendChild(titles)
     let div = document.createElement('div')
     div.className = "main__formDiv container bg-secondary"
     div.innerHTML = '<h2>BMI Logbook</h2>'
     for (const bmi of bmis) {
-        const row = document.createElement('li')
-        row.textContent = `   ${bmi.weight}   - ${bmi.height}  - ${bmi.bmi} - ${bmi.date}`
-        ul.appendChild(row)
+        const row = document.createElement('div')
+        row.className = 'row border'
+        row.innerHTML = `<div class="col-3">${bmi.weight.value}</div>
+        <div class="col-3">${bmi.height.value}</div>
+        <div class="col-3">${bmi.bmi}</div>
+        <div class="col-3">${bmi.date}</div>`
+        spreadsheet.appendChild(row)
     }
     div.appendChild(ul)
     spreadsheet.appendChild(div)
@@ -51,38 +47,35 @@ let render_bmi = () => {
 
 function push_bmi(detailed_bmi){
     bmis.push(detailed_bmi)
-    render_bmi()
+    render_bmi() // HACERLO EN OTRA SECCION - QUE TENGA OPCION VER EN DISTINTAS UNIDADES, AGREGAR UNA ENTRADA
     localStorage.setItem('bmis', JSON.stringify(bmis))
 }
-
-let bmiCalculate_btn = document.getElementById('bmi_calculate')
-bmiCalculate_btn.addEventListener("click", calculate_bmi)
-let bmisDisplay_btn = document.getElementById('bmi_displays')
-bmisDisplay_btn.addEventListener('click', render_bmi)
 
 
 
 function calculate_bmi(){
-    let weight = document.getElementById('weight').value
-    weight = parseFloat(weight)
-    let w_unit_el = document.getElementById('w_unit')
-    let w_unit = w_unit_el.options[w_unit_el.selectedIndex].value
-    if (w_unit == 1) {
-        weight = poundToKg(weight)
-    } else if (w_unit != 2) {
-        alert("Remember to select a unit of measurement.")
+    const weight = getWeight("weight", "w_unit")
+    const height = getHeight("height", "h_unit")
+    //Validation
+    const unit_empty = weight.unit == "Unit" || height.unit == "Unit"
+    const value_invalid = weight.value <= 0 || height.value <= 0 || Number.isNaN(weight.value) || Number.isNaN(height.value)
+
+    
+    // USAR SWAL LUEGO -- FUNCTION IN  UNITS.JS
+    if (unit_empty || value_invalid) {
+        return alertIncorrectInput(unit_empty, value_invalid)
     }
-    let height = document.getElementById('height').value
-    height = parseFloat(height)
-    let h_unit_el = document.getElementById('h_unit')
-    let h_unit = h_unit_el.options[h_unit_el.selectedIndex].value
-    if (h_unit == "Unit") {
-        alert("Remember to select a unit of measurement.")
-    } else {
-        height = toMetre(height, h_unit)
-    }
+    //Weight Transform
+    
+    weight.toKg()
+    console.log(weight) // check
+    height.toMetre()
+    console.log(height) //check
+    
+
     let bmi_result = bmi(weight, height)
     bmi_result = bmi_result.toFixed(2)
+    
 
     //CHALLENGE CODE -> LATER IMPROVE ON FUNCTIONALITY
 
@@ -103,14 +96,13 @@ function calculate_bmi(){
             //          SPREADSHEET STYLE UI WITH FILTERS
 
             let dateObj = new Date() // FINAL PROYECT => DAYJS LIBRARY
-            let date = `${dateObj.getDate()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`
+            
+            let date = dayjs().format("DD/MM/YYYY")
             let detailed_bmi = new bmi_detailed(weight, height, bmi_result, date)
-            let container = document.getElementById('displayBmi')
             push_bmi(detailed_bmi)
-          } else {
-
           }
       })
+    }
 
      //BELOW THIS IS ANOTHER FUNCTION :: REMEMBER MODULARITY -> FUNCTION RESPONSABILITY ABOVE => GIVE IMC
     /* SEPARATE FUNCTION AND CORRECT ERRORS
@@ -132,7 +124,7 @@ function calculate_bmi(){
     let noLogbook = document.getElementById('noLogbook')
     noLogbook.addEventListener('click', () => container.innerHTML = '')
     let logbook = document.getElementById('logbook')
-    logbook.addEventListener('click', push_bmi(detailed_bmi))*/
+    logbook.addEventListener('click', push_bmi(detailed_bmi))
     
-}
+}*/
 

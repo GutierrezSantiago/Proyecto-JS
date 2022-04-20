@@ -1,5 +1,6 @@
-let signUpLink = document.getElementById('loginChange')
-signUpLink.addEventListener('click', setSignLog)
+const AlertServerUnderMaintenance = () => {
+  alert("Sorry! Our servers are under maintenance. You can still use the common logbook to your browser and the calculators.")
+}
 
 function setSignLog(){
     let userForm = document.getElementById('loginZone')
@@ -35,10 +36,12 @@ function setSignLog(){
           <label for="floatingPassword">Confirm Password</label>
         </div>
         <p class="main__loginChange" id="loginChange">Already have an account? Log in here</p>
-        <button type="submit" class="btn btn-primary justify-self-center w-80">Sign up</button>
+        <button type="submit" class="btn btn-primary justify-self-center w-80" id="user_button">Sign up</button>
         </form>`
         
     }
     signUpLink = document.getElementById('loginChange')
     signUpLink.addEventListener('click', setSignLog)
+    let user_button = document.getElementById("user_button")
+    user_button.addEventListener('click', AlertServerUnderMaintenance)
 }
