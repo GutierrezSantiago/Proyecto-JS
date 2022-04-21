@@ -4,14 +4,8 @@ const render = () => {
     let render_type = filter.value
     if (render_type==0) {
         render_bmi()
-    } else if (render_type==1) {
-
-    } else if (render_type==2) {
-
-    } else if (render_type==3) {
-
     } else {
-
+        render_oneRepMaxs(render_type-1)
     }
 }
 

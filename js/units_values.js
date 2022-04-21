@@ -85,11 +85,58 @@ const getReps = (id_reps) => {
 
 const alertIncorrectInput = (unit_empty, value_invalid) => {
     if (unit_empty && value_invalid) {
-        return (alert("Remember to enter a valid input and select a unit of measurement."))
+        Swal.fire({
+            title:  `Invalid input and unit`,
+            text: 'Remember to enter a valid input and select a unit of measurement.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+
     } else if (unit_empty){
-        return (alert("Remember to select a unit of measurement."))
+        Swal.fire({
+            title:  `Invalid unit`,
+            text: 'Remember to select a unit of measurement.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
     } else {
-        return (alert("Remember to enter a valid input."))
+        Swal.fire({
+            title:  `Invalid input`,
+            text: 'Remember to enter a valid input.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
     }
     
 }
+
+const splice_render = (i) => {
+    Swal.fire({
+        title:  `Are you sure you want to remove this entry?`,
+        text: 'This action is irreversible',
+        icon: 'warning',
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        showDenyButton: 'true',
+        allowOutsideClick: 'false',
+        allowEnterKey: 'false'
+      }).then((result) => {
+          if (result.isConfirmed) {
+                let filter = document.getElementById('logbook_filter')
+                filter.addEventListener('change', render)
+                let render_type = filter.value
+                if (render_type==0) {
+                    bmis.splice(i, 1)
+                    localStorage.setItem('bmis', JSON.stringify(bmis))
+                    render_bmi()
+                } else {
+                    oneRepMaxs[render_type-1].splice(i, 1)
+                    localStorage.setItem('oneRepMaxs', JSON.stringify(oneRepMaxs))
+                    render_oneRepMaxs(render_type-1)
+                } 
+          }
+      })
+    }
+
+  
+    

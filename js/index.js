@@ -8,8 +8,6 @@ user_button.addEventListener('click', AlertServerUnderMaintenance)
 
 let bmiCalculate_btn = document.getElementById('bmi_calculate')
 bmiCalculate_btn.addEventListener("click", calculate_bmi)
-//let bmisDisplay_btn = document.getElementById('bmi_displays')
-//bmisDisplay_btn.addEventListener('click', render_bmi)
 
 let oneRepMaxCalculate_btn = document.getElementById('oneRepMax_calculate')
 oneRepMaxCalculate_btn.addEventListener("click", calculate_oneRepMax)

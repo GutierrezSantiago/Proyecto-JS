@@ -1,14 +1,55 @@
+const storedOneRepMaxs = localStorage.getItem('oneRepMaxs')
+let oneRepMaxs = [[],[],[],[]]
+
+if (storedOneRepMaxs) {
+    oneRepMaxs = JSON.parse(storedOneRepMaxs)
+}
+
 let oneRepMax = (weight, reps) => weight*(36/(37-reps))
 
 class oneRepMax_detailed {
-    constructor(lift, weight, reps, date) {
+    constructor(lift, oneRepMaxValue, weight, reps, date) {
         this.lift = lift
+        this.oneRepMaxValue = oneRepMaxValue
         this.weight = weight
         this.reps = reps
         this.date = date
     }
 }
 
+let render_oneRepMaxs = (lift) => {
+    const spreadsheet = document.getElementById('spreadsheet')
+    spreadsheet.innerHTML = '<div class="container"></div>'
+    let titles = document.createElement('div')
+    titles.className = 'row border'
+    titles.innerHTML = `<div class="col-2">One Rep Max(Kg)</div>
+                        <div class="col-2">Weight(Kg)</div>
+                        <div class="col-2">Repetitions</div>
+                        <div class="col-2">Date</div>
+                        <div class="col-2"></div>`
+    spreadsheet.appendChild(titles)
+    let i = 0
+    for (const detailed_oneRepMax of oneRepMaxs[lift]) {
+        const row = document.createElement('div')
+        row.className = 'row border'
+        row.innerHTML = `<div class="col-3">${detailed_oneRepMax.oneRepMaxValue}</div>
+        <div class="col-2">${(detailed_oneRepMax.weight).value}</div>
+        <div class="col-2">${detailed_oneRepMax.reps}</div>
+        <div class="col-3">${detailed_oneRepMax.date}</div>
+        <div class="col-2"><button class="btn btn-danger justify-self-center w-90" id="${i}" onclick="splice_render(${i})">X</button></div>`
+        spreadsheet.appendChild(row)
+        
+        
+        i++
+
+    }
+
+}
+
+function push_oneRepMax(oneRepMax_detailed, lift){
+    (oneRepMaxs[lift]).push(oneRepMax_detailed)
+    localStorage.setItem('oneRepMaxs', JSON.stringify(oneRepMaxs))
+}
 
 function calculate_oneRepMax(){
     const lift = getLift("lift")
@@ -21,8 +62,6 @@ function calculate_oneRepMax(){
     const unit_empty = weight.unit == "Unit"
     const value_invalid = weight.value <= 0 || reps <= 0 || Number.isNaN(weight.value) || Number.isNaN(reps)
 
-    
-    // USAR SWAL LUEGO -- FUNCTION IN  UNITS.JS
     if (unit_empty || value_invalid) {
         return alertIncorrectInput(unit_empty, value_invalid)
     }
@@ -33,9 +72,7 @@ function calculate_oneRepMax(){
 
     let oneRepMaxValue = oneRepMax(weight.value, reps)
     oneRepMaxValue = oneRepMaxValue.toFixed(2)
-    console.log(oneRepMaxValue)
 
-    //CHALLENGE CODE -> LATER IMPROVE ON FUNCTIONALITY
 
     Swal.fire({
         title:  `Your one rep max for is ${lift_name} is ${oneRepMaxValue} ${weight_unit}.`,
@@ -48,23 +85,11 @@ function calculate_oneRepMax(){
         allowEnterKey: 'false'
       }).then((result) => {
           if (result.isConfirmed) {
-            // READ BELOW -> OBSOLETE CODE THAT WILL BE UPDATED CLOSER TO THE FINAL PROYECT DEADLINE
-            
-            // LATER -> DIFFERENT PAGE FOR LOGBOOKS, THEY CAN BECOME TOO LARGE FOR MAIN PAGE
-            //          SPREADSHEET STYLE UI WITH FILTERS
-            // FINAL PROYECT => DAYJS LIBRARY
-            let date = dayjs().format("DD/MM/YYYY")
 
+            let date = dayjs().format("DD/MM/YYYY")
+            let detailed_oneRepMax = new oneRepMax_detailed(lift_name, oneRepMaxValue, weight, reps, date)
+            push_oneRepMax(detailed_oneRepMax, lift)
 
           }
       })
     }
-/*class Logbook {
-    constructor(name, imcs, deadlifts, squats, other) {
-        this.imcs = imcs
-        this.deadlifts = deadlifts
-        this.squats = squats
-        this.other = other
-    }
-
-}*/
