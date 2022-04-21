@@ -1,5 +1,10 @@
 const AlertServerUnderMaintenance = () => {
-  alert("Sorry! Our servers are under maintenance. You can still use the common logbook to your browser and the calculators.")
+  Swal.fire({
+    title:  `Server is down`,
+    text: 'The calculators and the local browser logbook are still available if needed.',
+    icon: 'error',
+    confirmButtonText: 'Ok'
+  })
 }
 
 function setSignLog(){
@@ -19,7 +24,7 @@ function setSignLog(){
           <label class="form-check-label" for="keepLogin">Keep me logged in</label>
         </div>
         <p class="main__loginChange" id="loginChange">Don't have a user? Sign up here</p>
-        <button type="submit" class="btn btn-primary justify-self-center w-80">Log in</button>
+        <button class="btn btn-primary justify-self-center w-80">Log in</button>
       </form>`
     } else {
         userForm.innerHTML = `<form class="d-flex flex-column">
@@ -36,7 +41,7 @@ function setSignLog(){
           <label for="floatingPassword">Confirm Password</label>
         </div>
         <p class="main__loginChange" id="loginChange">Already have an account? Log in here</p>
-        <button type="submit" class="btn btn-primary justify-self-center w-80" id="user_button">Sign up</button>
+        <button class="btn btn-primary justify-self-center w-80" id="user_button">Sign up</button>
         </form>`
         
     }

@@ -1,15 +1,17 @@
 console.log('Meals L')
 
 
-const showMealsL = async () => {
-    const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=l')
+const showMeals = async (l) => {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${l}`)
     const {meals} = await res.json()
-    meals.forEach((e)=>{
-        const li = document.createElement('li')
-        li.innerText = e.strMeal
-        document.body.appendChild(li)
+    console.log(meals)
+    let recipesContainer = document.getElementById("recipesContainer")
+    recipesContainer.innerHTML = ''
+    meals.map((e)=>{
+        e = `CARD STRUCTURE THAT ALLOWS ME TO INSERT EASILY MY RECIPES`
         })
 }
 
-const btn = document.getElementById("show")
-btn.addEventListener('click', showMealsL)
+//const btn = document.getElementById("show")
+//btn.addEventListener('click', showMeals("l"))
+
