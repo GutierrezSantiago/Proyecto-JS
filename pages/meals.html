@@ -22,51 +22,55 @@
                     <a class="nav-link " aria-current="page" href="../index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="./pages/logbook.html">Logbook</a>
+                    <a class="nav-link" href="./pages/logbook.html">Logbook</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Contact</a>
+                    <a class="nav-link active" href="./meals.html">Meals</a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
     </header>
-    <main class="main">
+    <main class="main main__section--meals">
         <div class="container-fluid mt-auto">
-            <h1>Meals Recipes</h1>
-            <p>Filter any recipe by starting letter with just one click.</p>
-            <div class="container d-flex justify-content-between flex-wrap">
-                <button class="btn btn-primary m-1" id="a" onclick="showMeals('a')">A</button>
-                <button class="btn btn-primary m-1" id="b" onclick="showMeals('b')">B</button>
-                <button class="btn btn-primary m-1" id="c" onclick="showMeals('c')">C</button>
-                <button class="btn btn-primary m-1" id="d" onclick="showMeals('d')">D</button>
-                <button class="btn btn-primary m-1" id="e" onclick="showMeals('e')">E</button>
-                <button class="btn btn-primary m-1" id="f" onclick="showMeals('f')">F</button>
-                <button class="btn btn-primary m-1" id="g" onclick="showMeals('g')">G</button>
-                <button class="btn btn-primary m-1" id="h" onclick="showMeals('h')">H</button>
-                <button class="btn btn-primary m-1" id="i" onclick="showMeals('i')">I</button>
-                <button class="btn btn-primary m-1" id="j" onclick="showMeals('j')">J</button>
-                <button class="btn btn-primary m-1" id="k" onclick="showMeals('k')">K</button>
-                <button class="btn btn-primary m-1" id="l" onclick="showMeals('l')">L</button>
-                <button class="btn btn-primary m-1" id="m" onclick="showMeals('m')">M</button>
-                <button class="btn btn-primary m-1" id="n" onclick="showMeals('n')">N</button>
-                <button class="btn btn-primary m-1" id="o" onclick="showMeals('o')">O</button>
-                <button class="btn btn-primary m-1" id="p" onclick="showMeals('p')">P</button>
-                <button class="btn btn-primary m-1" id="q" onclick="showMeals('q')">Q</button>
-                <button class="btn btn-primary m-1" id="r" onclick="showMeals('r')">R</button>
-                <button class="btn btn-primary m-1" id="s" onclick="showMeals('s')">S</button>
-                <button class="btn btn-primary m-1" id="t" onclick="showMeals('t')">T</button>
-                <button class="btn btn-primary m-1" id="u" onclick="showMeals('u')">U</button>
-                <button class="btn btn-primary m-1" id="v" onclick="showMeals('v')">V</button>
-                <button class="btn btn-primary m-1" id="w" onclick="showMeals('w')">W</button>
-                <button class="btn btn-primary m-1" id="x" onclick="showMeals('x')">X</button>
-                <button class="btn btn-primary m-1" id="y" onclick="showMeals('y')">Y</button>
-                <button class="btn btn-primary m-1" id="z" onclick="showMeals('z')">Z</button>
+            <h1 class="m-4 pt-4">Meals Recipes</h1>
+            <p class="m-4">At gilgamesh fitness, we believe that a balanced life is a healthy life. Enjoy a great meal, keep a healthy relationship with food.</p>
+            <div class="d-flex justify-content-between align-items-center">
+            <p class="m-4 pb-4">Filter any recipe by starting letter with just one click.</p>
+            <button class="btn btn-outline-primary h-50 " onclick="showAllMeals()">Show all recipes</button>
+            </div>
+            <div class="btn-group d-flex justify-content-between flex-wrap" role="group" aria-label="Basic mixed styles example">
+                <button class="btn btn-outline-primary" id="a" onclick="showMeals('a')">A</button>
+                <button class="btn btn-outline-primary" id="b" onclick="showMeals('b')">B</button>
+                <button class="btn btn-outline-primary" id="c" onclick="showMeals('c')">C</button>
+                <button class="btn btn-outline-primary" id="d" onclick="showMeals('d')">D</button>
+                <button class="btn btn-outline-primary" id="e" onclick="showMeals('e')">E</button>
+                <button class="btn btn-outline-primary" id="f" onclick="showMeals('f')">F</button>
+                <button class="btn btn-outline-primary" id="g" onclick="showMeals('g')">G</button>
+                <button class="btn btn-outline-primary" id="h" onclick="showMeals('h')">H</button>
+                <button class="btn btn-outline-primary" id="i" onclick="showMeals('i')">I</button>
+                <button class="btn btn-outline-primary" id="j" onclick="showMeals('j')">J</button>
+                <button class="btn btn-outline-primary" id="k" onclick="showMeals('k')">K</button>
+                <button class="btn btn-outline-primary" id="l" onclick="showMeals('l')">L</button>
+                <button class="btn btn-outline-primary" id="m" onclick="showMeals('m')">M</button>
+                <button class="btn btn-outline-primary" id="n" onclick="showMeals('n')">N</button>
+                <button class="btn btn-outline-primary" id="o" onclick="showMeals('o')">O</button>
+                <button class="btn btn-outline-primary" id="p" onclick="showMeals('p')">P</button>
+                <button class="btn btn-outline-primary" id="q" onclick="showMeals('q')">Q</button>
+                <button class="btn btn-outline-primary" id="r" onclick="showMeals('r')">R</button>
+                <button class="btn btn-outline-primary" id="s" onclick="showMeals('s')">S</button>
+                <button class="btn btn-outline-primary" id="t" onclick="showMeals('t')">T</button>
+                <button class="btn btn-outline-primary" id="u" onclick="showMeals('u')">U</button>
+                <button class="btn btn-outline-primary" id="v" onclick="showMeals('v')">V</button>
+                <button class="btn btn-outline-primary" id="w" onclick="showMeals('w')">W</button>
+                <button class="btn btn-outline-primary" id="x" onclick="showMeals('x')">X</button>
+                <button class="btn btn-outline-primary" id="y" onclick="showMeals('y')">Y</button>
+                <button class="btn btn-outline-primary" id="z" onclick="showMeals('z')">Z</button>
 
             </div>
-            <div class="container" id="recipesContainer">
-                
+            <div class="container-fluid  d-flex flex-wrap m-4" id="recipesContainer">
+              
             </div>
         </div>
     </main>

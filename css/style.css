@@ -16,6 +16,9 @@
       height: 78vh;
       overflow-y: auto;
     }
+    .main__section--meals{
+      min-height: 80vh;
+    }
   .main__formDiv {
     height: auto;
     width: 90%;
