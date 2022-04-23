@@ -24,7 +24,7 @@ function setSignLog(){
           <label class="form-check-label" for="keepLogin">Keep me logged in</label>
         </div>
         <p class="main__loginChange" id="loginChange">Don't have a user? Sign up here</p>
-        <button class="btn btn-primary justify-self-center w-80">Log in</button>
+        <button type="button" class="btn btn-primary justify-self-center w-80">Log in</button>
       </form>`
     } else {
         userForm.innerHTML = `<form class="d-flex flex-column">
@@ -41,7 +41,7 @@ function setSignLog(){
           <label for="floatingPassword">Confirm Password</label>
         </div>
         <p class="main__loginChange" id="loginChange">Already have an account? Log in here</p>
-        <button class="btn btn-primary justify-self-center w-80" id="user_button">Sign up</button>
+        <button type="button" class="btn btn-primary justify-self-center w-80" id="user_button">Sign up</button>
         </form>`
         
     }
